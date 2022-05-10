@@ -27,19 +27,16 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var viewModel = ViewModelProvider(this)
+        viewModel = ViewModelProvider(this)
             .get(MainViewModel::class.java)
-        // toto: Using the ViewModel
-        var number = 0
 
         val textView = view?.findViewById<TextView>(R.id.textView)
-        textView?.text = number.toString()
+        textView?.text = viewModel.number.toString()
 
         val button = view?.findViewById<Button>(R.id.button)
         button?.setOnClickListener {
-            number++
-            textView?.text = number.toString()
+            viewModel.addOne()
+            textView?.text = viewModel.number.toString()
         }
     }
-
 }
